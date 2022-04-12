@@ -42,7 +42,6 @@ int main() {
 		int returnWon = changeUW * 10;
 		printf("기준 환율: %.2f\n", RATE_USD);
 		outputWon(returnWon, inputWon, outputExchange);
-		printf("----------------------------------------------------------\n");
 	}
 	if (menuNumber == 2)
 	{
@@ -52,7 +51,6 @@ int main() {
 		int returnWon = changeJW * 10;
 		printf("기준 환율: %.2f\n", RATE_JPY);
 		outputWon(returnWon, inputWon, outputExchange);
-		printf("----------------------------------------------------------\n");
 	}
 	if (menuNumber == 3)
 	{
@@ -62,7 +60,6 @@ int main() {
 		int returnWon = changeEW * 10;
 		printf("기준 환율: %.2f\n", RATE_EUR);
 		outputWon(returnWon, inputWon, outputExchange);
-		printf("----------------------------------------------------------\n");
 	}
 	if (menuNumber == 4)
 	{
@@ -72,7 +69,6 @@ int main() {
 		int returnWon = changeCW * 10;
 		printf("기준 환율: %.2f\n", RATE_CNY);
 		outputWon(returnWon, inputWon, outputExchange);
-		printf("----------------------------------------------------------\n");
 	}
 	if (menuNumber == 5)
 	{
@@ -82,7 +78,6 @@ int main() {
 		int returnWon = changeGW * 10;
 		printf("기준 환율: %.2f\n", RATE_GBP);
 		outputWon(returnWon, inputWon, outputExchange);
-		printf("----------------------------------------------------------\n");
 	}
 	return 0;
 }

@@ -1,83 +1,53 @@
 #include <stdio.h>
 
-void outputWon(int returnWon, int inputWon, int outputExchange) {
+void outputWon(float changeRate,int inputWon, const char *unit) {
+	float outputMoney = inputWon / changeRate;
+	int outputExchange = (int)outputMoney;
+	int changeMW = ((outputMoney - outputExchange) * changeRate) / 10;
+	int returnWon = changeMW * 10;
 	int oW1 = returnWon / 1000;
 	int oW2 = (returnWon - oW1 * 1000) /  500;
 	int oW3 = (returnWon - oW1 * 1000 - oW2 * 500) / 100;
 	int oW4 = (returnWon - oW1 * 1000 - oW2 * 500 - oW3 * 100) / 50;
 	int oW5 = (returnWon - oW1 * 1000 - oW2 * 500 - oW3 * 100 - oW4 * 50) / 10;
-	printf("%d ì› -> %10d ë‹¬ëŸ¬ \nê±°ìŠ¤ë¦„ëˆ -> %10d ì› \n", inputWon, outputExchange, returnWon);
-	printf("1000ì› %dê°œ , 500ì› %dê°œ, 100ì› %dê°œ, 50ì› %dê°œ, 10ì› %dê°œ\n", oW1, oW2, oW3, oW4, oW5);
+	printf("±âÁØ È¯À²: %.2f\n", changeRate);
+	printf("%d ¿ø -> %10d %s \n°Å½º¸§µ· -> %10d ¿ø \n", inputWon, outputExchange, unit, returnWon);
+	printf("1000¿ø %d°³ , 500¿ø %d°³, 100¿ø %d°³, 50¿ø %d°³, 10¿ø %d°³\n", oW1, oW2, oW3, oW4, oW5);
 }
 int main() {
 	
-	printf("í™˜ì „ì„ ì›í•˜ëŠ” ì›í™” ê¸ˆì•¡ì„ ì…ë ¥í•˜ì„¸ìš” : ");
+	printf("È¯ÀüÀ» ¿øÇÏ´Â ¿øÈ­ ±İ¾×À» ÀÔ·ÂÇÏ¼¼¿ä : ");
 	int inputWon = 0;
 	scanf("%d", &inputWon);
 	int menuNumber = 0;
 	do {
-		printf("í™˜ì „í•  ì™¸í™”ë¥¼ ì„ íƒí•˜ì„¸ìš” (1: USD, 2.: JPY, 3. EUR, 4:CNY, 5: GBP): ");
+		printf("È¯ÀüÇÒ ¿ÜÈ­¸¦ ¼±ÅÃÇÏ¼¼¿ä (1: USD, 2.: JPY, 3. EUR, 4:CNY, 5: GBP): ");
 		scanf("%d", &menuNumber);
 	}while(menuNumber < 1 || menuNumber > 5);
 	
 	printf("\n");
-	
-	const float RATE_USD = 1233.1;  // ìƒìˆ˜ëŠ” ëŒ€ë¬¸ì ë‹¨ì–´ì™€ ë‹¨ì–´ ì‚¬ì´ëŠ” ì–¸ë”ë°” 
-	const float RATE_JPY = 987.87;
+	const float RATE_USD = 1233.1;  // »ó¼ö´Â ´ë¹®ÀÚ ´Ü¾î¿Í ´Ü¾î »çÀÌ´Â ¾ğ´õ¹Ù 
+	const float RATE_JPY = 9.87;
 	const float RATE_EUR = 1342.94;
 	const float RATE_CNY = 193.18; 
 	const float RATE_GBP = 1604.52; 
-	
-	float outputDollar = 0;
-	float outputJPY = 0;
-	float outputEUR = 0;
-	float outputCNY = 0;
-	float outputGBP = 0;
-	
-	if (menuNumber == 1)
+	//const char *USD = "´Ş·¯"; const char *JPY = "¿£"; const char *EUR = "À¯·Î"; const char *CNY = "À§¾È"; const char *GBP = "ÆÄ¿îµå"; 
+	switch (menuNumber)
 	{
-		float outputUSD = inputWon / RATE_USD;
-		int outputExchange = (int)outputUSD;
-		int changeUW = ((outputUSD - outputExchange) * RATE_USD) / 10;
-		int returnWon = changeUW * 10;
-		printf("ê¸°ì¤€ í™˜ìœ¨: %.2f\n", RATE_USD);
-		outputWon(returnWon, inputWon, outputExchange);
+	case 1:
+		outputWon(RATE_USD, inputWon, "´Ş·¯");
+		break;
+	case 2:
+		outputWon(RATE_JPY, inputWon, "¿£");
+		break;
+	case 3:
+		outputWon(RATE_EUR, inputWon, "À¯·Î");
+		break;
+	case 4:
+		outputWon(RATE_CNY, inputWon, "À§¾È");
+		break;
+	case 5:
+		outputWon(RATE_GBP, inputWon, "ÆÄ¿îµå");
+		break;
 	}
-	if (menuNumber == 2)
-	{
-		float outputJPY = inputWon / (RATE_JPY / 100);
-		int outputExchange = (int)outputJPY;
-		int changeJW = ((outputJPY - outputExchange) * RATE_JPY) / 10; 
-		int returnWon = changeJW * 10;
-		printf("ê¸°ì¤€ í™˜ìœ¨: %.2f\n", RATE_JPY);
-		outputWon(returnWon, inputWon, outputExchange);
-	}
-	if (menuNumber == 3)
-	{
-		float outputEUR = inputWon / RATE_EUR;
-		int outputExchange = (int)outputEUR;
-		int  changeEW = ((outputEUR - outputExchange) * RATE_EUR) / 10;
-		int returnWon = changeEW * 10;
-		printf("ê¸°ì¤€ í™˜ìœ¨: %.2f\n", RATE_EUR);
-		outputWon(returnWon, inputWon, outputExchange);
-	}
-	if (menuNumber == 4)
-	{
-		float outputCNY = inputWon / RATE_CNY;
-		int outputExchange = (int)outputCNY;
-		int changeCW = ((outputCNY - outputExchange) * RATE_CNY) / 10;
-		int returnWon = changeCW * 10;
-		printf("ê¸°ì¤€ í™˜ìœ¨: %.2f\n", RATE_CNY);
-		outputWon(returnWon, inputWon, outputExchange);
-	}
-	if (menuNumber == 5)
-	{
-		float outputGBP = inputWon / RATE_GBP;
-		int outputExchange = (int)outputGBP;
-		int changeGW = ((outputGBP - outputExchange) * RATE_GBP) / 10;
-		int returnWon = changeGW * 10;
-		printf("ê¸°ì¤€ í™˜ìœ¨: %.2f\n", RATE_GBP);
-		outputWon(returnWon, inputWon, outputExchange);
-	}
-	return 0;
 }

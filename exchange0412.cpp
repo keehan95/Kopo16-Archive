@@ -1,11 +1,12 @@
 #include <stdio.h>
 
-void outputWon(int returnWon) {
+void outputWon(int returnWon, int inputWon, int outputExchange) {
 	int oW1 = returnWon / 1000;
 	int oW2 = (returnWon - oW1 * 1000) /  500;
 	int oW3 = (returnWon - oW1 * 1000 - oW2 * 500) / 100;
 	int oW4 = (returnWon - oW1 * 1000 - oW2 * 500 - oW3 * 100) / 50;
 	int oW5 = (returnWon - oW1 * 1000 - oW2 * 500 - oW3 * 100 - oW4 * 50) / 10;
+	printf("%d 원 -> %10d 달러 \n거스름돈 -> %10d 원 \n", inputWon, outputExchange, returnWon);
 	printf("1000원 %d개 , 500원 %d개, 100원 %d개, 50원 %d개, 10원 %d개\n", oW1, oW2, oW3, oW4, oW5);
 }
 int main() {
@@ -36,56 +37,51 @@ int main() {
 	if (menuNumber == 1)
 	{
 		float outputUSD = inputWon / RATE_USD;
-		int outputExchangeU = (int)outputUSD;
-		int changeUW = ((outputDollar - outputExchangeU) * RATE_USD) / 10;
+		int outputExchange = (int)outputUSD;
+		int changeUW = ((outputUSD - outputExchange) * RATE_USD) / 10;
 		int returnWon = changeUW * 10;
 		printf("기준 환율: %.2f\n", RATE_USD);
-		printf("%d 원 -> %10d 달러 \n거스름돈 -> %10d 원 \n", inputWon, outputExchangeU, returnWon);
-		outputWon(returnWon);
+		outputWon(returnWon, inputWon, outputExchange);
 		printf("----------------------------------------------------------\n");
 	}
 	if (menuNumber == 2)
 	{
 		float outputJPY = inputWon / (RATE_JPY / 100);
-		int outputExchangeJ = (int)outputJPY;
-		int changeJW = ((outputJPY - outputExchangeJ) * RATE_JPY) / 10; 
+		int outputExchange = (int)outputJPY;
+		int changeJW = ((outputJPY - outputExchange) * RATE_JPY) / 10; 
 		int returnWon = changeJW * 10;
 		printf("기준 환율: %.2f\n", RATE_JPY);
-		printf("%d 원 -> %10d 엔 \n거스름돈 -> %10d 원 \n", inputWon, outputExchangeJ, returnWon);
-		outputWon(returnWon);
+		outputWon(returnWon, inputWon, outputExchange);
 		printf("----------------------------------------------------------\n");
 	}
 	if (menuNumber == 3)
 	{
 		float outputEUR = inputWon / RATE_EUR;
-		int outputExchangeE = (int)outputEUR;
-		int  changeEW = ((outputEUR - outputExchangeE) * RATE_EUR) / 10;
+		int outputExchange = (int)outputEUR;
+		int  changeEW = ((outputEUR - outputExchange) * RATE_EUR) / 10;
 		int returnWon = changeEW * 10;
 		printf("기준 환율: %.2f\n", RATE_EUR);
-		printf("%d 원 -> %10d 유로 \n거스름돈 -> %10d 원 \n", inputWon, outputExchangeE, returnWon);
-		outputWon(returnWon);
+		outputWon(returnWon, inputWon, outputExchange);
 		printf("----------------------------------------------------------\n");
 	}
 	if (menuNumber == 4)
 	{
 		float outputCNY = inputWon / RATE_CNY;
-		int outputExchangeC = (int)outputCNY;
-		int changeCW = ((outputCNY - outputExchangeC) * RATE_CNY) / 10;
+		int outputExchange = (int)outputCNY;
+		int changeCW = ((outputCNY - outputExchange) * RATE_CNY) / 10;
 		int returnWon = changeCW * 10;
 		printf("기준 환율: %.2f\n", RATE_CNY);
-		printf("%d 원 -> %10d 위안 \n거스름돈 -> %10d 원 \n", inputWon, outputExchangeC, returnWon);
-		outputWon(returnWon);
+		outputWon(returnWon, inputWon, outputExchange);
 		printf("----------------------------------------------------------\n");
 	}
 	if (menuNumber == 5)
 	{
 		float outputGBP = inputWon / RATE_GBP;
-		int outputExchangeG = (int)outputGBP;
-		int changeGW = ((outputGBP - outputExchangeG) * RATE_GBP) / 10;
+		int outputExchange = (int)outputGBP;
+		int changeGW = ((outputGBP - outputExchange) * RATE_GBP) / 10;
 		int returnWon = changeGW * 10;
 		printf("기준 환율: %.2f\n", RATE_GBP);
-		printf("%d 원 -> %10d 파운드 \n거스름돈 -> %10d 원 \n", inputWon, outputExchangeG, returnWon);
-		outputWon(returnWon);
+		outputWon(returnWon, inputWon, outputExchange);
 		printf("----------------------------------------------------------\n");
 	}
 	return 0;

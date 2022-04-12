@@ -11,7 +11,7 @@ void outputWon(float changeRate,int inputWon, const char *unit) {
 	int oW4 = (returnWon - oW1 * 1000 - oW2 * 500 - oW3 * 100) / 50;
 	int oW5 = (returnWon - oW1 * 1000 - oW2 * 500 - oW3 * 100 - oW4 * 50) / 10;
 	printf("기준 환율: %.2f\n", changeRate);
-	printf("%d 원 -> %10d %s \n거스름돈 -> %10d 원 \n", inputWon, outputExchange, unit, returnWon);
+	printf("%d원 -> %10d %s \n 거스름돈 -> %10d 원 \n", inputWon, outputExchange, unit, returnWon);
 	printf("1000원 %d개 , 500원 %d개, 100원 %d개, 50원 %d개, 10원 %d개\n", oW1, oW2, oW3, oW4, oW5);
 }
 int main() {
@@ -27,7 +27,7 @@ int main() {
 	
 	printf("\n");
 	const float RATE_USD = 1233.1;  // 상수는 대문자 단어와 단어 사이는 언더바 
-	const float RATE_JPY = 9.87;
+	const float RATE_JPY = 987.87;
 	const float RATE_EUR = 1342.94;
 	const float RATE_CNY = 193.18; 
 	const float RATE_GBP = 1604.52; 
@@ -38,7 +38,7 @@ int main() {
 		outputWon(RATE_USD, inputWon, "달러");
 		break;
 	case 2:
-		outputWon(RATE_JPY, inputWon, "엔");
+		outputWon(RATE_JPY, inputWon * 100, "엔");
 		break;
 	case 3:
 		outputWon(RATE_EUR, inputWon, "유로");
